@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
       redirect_to edit_password_path, alert: "Por favor, atualize sua senha para continuar." unless request.path == edit_password_path
     end
   end
+
+  def require_admin
+    # Redireciona para a página principal se o usuário não for admin
+    redirect_to root_path, alert: "Acesso não autorizado." unless Current.librarian&.admin?
+  end
+
 end

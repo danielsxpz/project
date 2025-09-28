@@ -1,0 +1,29 @@
+<h1>Cadastrar Novo Bibliotecário (Admin)</h1>
+
+<%= render 'shared/errors', object: @librarian %>
+
+<%= form_with model: @librarian, url: admin_librarians_path do |form| %>
+  <div class="field">
+    <%= form.label :name, 'Nome' %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, 'E-mail' %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, 'Senha Provisória' %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, 'Confirmação da Senha Provisória' %>
+    <%= form.password_field :password_confirmation, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Cadastrar Bibliotecário' %>
+  </div>
+<% end %>
