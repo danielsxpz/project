@@ -1,0 +1,22 @@
+<h1>Defina sua Nova Senha</h1>
+<p>Para sua segurança, você precisa definir uma nova senha no seu primeiro acesso.</p>
+
+<%= form_with model: Current.librarian, url: edit_password_path, method: :patch do |form| %>
+  
+  <%# Renderiza a partial de erros, se houver %>
+  <%= render 'shared/errors', object: Current.librarian %>
+
+  <div class="field">
+    <%= form.label :password, 'Nova Senha' %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, 'Confirmação da Nova Senha' %>
+    <%= form.password_field :password_confirmation, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Salvar Nova Senha' %>
+  </div>
+<% end %>

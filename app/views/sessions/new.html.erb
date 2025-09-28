@@ -1,0 +1,27 @@
+<h1>Sessions#new</h1>
+<%# app/views/sessions/new.html.erb %>
+
+<h1>Login do Bibliotecário</h1>
+
+<%# Mostra uma mensagem de erro geral, se houver %>
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%= form_with url: login_path, method: :post do |form| %>
+  <div class="field">
+    <%= form.label :email, 'E-mail' %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, 'Senha' %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Entrar' %>
+  </div>
+<% end %>
+
+<%= link_to 'Não tenho uma conta', signup_path %>

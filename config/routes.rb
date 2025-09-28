@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "password_changes/edit"
+  get "password_changes/update"
+  # Rota para a página inicial
+  root 'sessions#new' # Define a página de login como inicial
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Rotas para cadastro de bibliotecários
+  get 'signup', to: 'librarians#new'
+  resources :librarians, only: [:create]
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # Rotas para login e logout
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get 'edit_password', to: 'password_changes#edit'
+  patch 'edit_password', to: 'password_changes#update'
 end
+
