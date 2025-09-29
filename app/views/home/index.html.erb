@@ -1,0 +1,18 @@
+<div class="public-header">
+  <h1>Acervo da Biblioteca Municipal</h1>
+  <p>Consulte nossos livros e cadastre-se para realizar um empréstimo!</p>
+  <%= link_to 'Cadastre-se para Empréstimos', signup_path, class: 'btn-primary' %>
+</div>
+
+<div class="books-grid">
+  <% @books.each do |book| %>
+    <div class="book-card">
+      <div class="book-status status-<%= book.status.parameterize %>">
+        <%= book.status %>
+      </div>
+      <h3 class="book-title"><%= book.title %></h3>
+      <p class="book-author">por <%= book.author %></p>
+      <p class="book-category"><%= book.category.name %></p>
+    </div>
+  <% end %>
+</div>

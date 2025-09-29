@@ -119,3 +119,76 @@ main {
   border-radius: 5px;
   text-decoration: none;
 }
+
+/*----------------*/
+
+/* Estilos para a Grelha de Livros na Página Principal */
+
+.public-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.books-grid {
+  display: grid;
+  /* Cria colunas responsivas: elas terão no mínimo 280px e se ajustarão para preencher o espaço */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px; /* Espaçamento entre os cards */
+  padding: 10px;
+}
+
+.book-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+  position: relative; /* Necessário para o posicionamento do status */
+  overflow: hidden; /* Garante que o status não saia para fora do card */
+}
+
+.book-card:hover {
+  transform: translateY(-5px); /* Efeito de elevação ao passar o rato */
+}
+
+.book-title {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.book-author {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.book-category {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: auto; /* Empurra a categoria para o fundo do card */
+}
+
+/* Estilos para o Status do Livro */
+.book-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  border-bottom-left-radius: 8px;
+}
+
+.status-disponivel {
+  background-color: #28a745; /* Verde */
+}
+
+.status-emprestado {
+  background-color: #dc3545; /* Vermelho */
+}

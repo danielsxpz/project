@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   get "books/index"
   get "books/new"
   get "books/create"
@@ -11,7 +12,9 @@ Rails.application.routes.draw do
   get "categories/edit"
   get "categories/update"
   get "categories/destroy"
-  root 'dashboard#index'
+  root 'home#index'
+
+  get 'dashboard', to: 'dashboard#index'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -27,4 +30,7 @@ Rails.application.routes.draw do
 
   resources :categories, except: [:show]
   resources :books, except: [:show]
+
+  get 'signup', to: 'users#new'
+  resources :users, only: [:create]
 end

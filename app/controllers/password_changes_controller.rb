@@ -11,7 +11,7 @@ class PasswordChangesController < ApplicationController
     # Combina os parâmetros da senha com a flag 'must_change_password'
     # e tenta salvar tudo de uma vez.
     if Current.librarian.update(password_params.merge(must_change_password: false))
-      redirect_to root_path, notice: "Senha atualizada com sucesso!"
+      redirect_to dashboard_path, notice: "Senha atualizada com sucesso!"
     else
       # Se a atualização falhar (ex: senhas não coincidem), renderiza a página novamente
       render :edit, status: :unprocessable_entity

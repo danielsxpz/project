@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       if Current.librarian.admin?
         redirect_to admin_librarians_path, notice: 'Login de administrador realizado com sucesso!'
       else
-        redirect_to root_path, notice: 'Login realizado com sucesso!'
+        redirect_to dashboard_path, notice: 'Login realizado com sucesso!'
       end
     else
       flash.now[:alert] = 'E-mail ou senha inválidos.'
