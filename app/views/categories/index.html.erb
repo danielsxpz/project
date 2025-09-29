@@ -1,0 +1,27 @@
+<div class="admin-header">
+  <h1>Gerenciar Categorias</h1>
+  <%= link_to 'Nova Categoria', new_category_path, class: 'btn-primary' %>
+</div>
+
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th colspan="2">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= link_to 'Editar', edit_category_path(category) %></td>
+        <td>
+          <%= button_to 'Deletar', category, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Voltar para o Dashboard', root_path, class: 'btn-secondary' %>

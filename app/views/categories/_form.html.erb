@@ -1,0 +1,12 @@
+<%= render 'shared/errors', object: category %>
+
+<%= form_with model: category do |form| %>
+  <div class="field">
+    <%= form.label :name, 'Nome da Categoria' %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Salvar' %>
+  </div>
+<% end %>

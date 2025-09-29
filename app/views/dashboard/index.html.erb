@@ -1,10 +1,13 @@
 <h1>Bem-vindo à Biblioteca Municipal</h1>
-<p>Você está logado com sucesso.</p>
 
-<%# Adiciona um link para o admin poder cadastrar novos bibliotecários %>
 <% if Current.librarian.admin? %>
-  <p><%= link_to 'Cadastrar Novo Bibliotecário', new_admin_librarian_path %></p>
+  <p>Você está na área do administrador.</p>
+  <p><%= link_to 'Gerenciar Bibliotecários', admin_librarians_path, class: 'btn-primary' %></p>
+<% else %>
+  <p>Você está na área de gerenciamento do acervo.</p>
+  <div class="dashboard-buttons">
+    <%= link_to 'Gerenciar Categorias', categories_path, class: 'btn-primary' %>
+    <%# O botão para Livros apontará para uma rota futura %>
+    <%= link_to 'Gerenciar Livros', '#', class: 'btn-secondary' %>
+  </div>
 <% end %>
-
-<%# Adiciona um link de Logout %>
-<p><%= button_to 'Sair', logout_path, method: :delete %></p>
