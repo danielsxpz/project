@@ -13,6 +13,7 @@
       <h3 class="book-title"><%= book.title %></h3>
       <p class="book-author">por <%= book.author %></p>
       <p class="book-category"><%= book.category.name %></p>
+      <%= link_to 'VER MAIS', book_path(book), class: 'btn-details' %>
     </div>
   <% end %>
 </div>

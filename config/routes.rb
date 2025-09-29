@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, except: [:show]
-  resources :books, except: [:show]
+  resources :books
 
   get 'signup', to: 'users#new'
   resources :users, only: [:create]

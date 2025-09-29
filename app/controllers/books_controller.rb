@@ -1,11 +1,17 @@
 class BooksController < ApplicationController
-  before_action :require_login
-  before_action :require_non_admin
-  before_action :set_book, only: [:edit, :update, :destroy]
+  layout 'public', only: [:show]
+
+  before_action :require_login, except: [:show]
+  before_action :require_non_admin, except: [:show]
+
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :load_categories, only: [:new, :create, :edit, :update]
 
   def index
     @books = Book.includes(:category).all.order(:title)
+  end
+
+  def show
   end
 
   def new

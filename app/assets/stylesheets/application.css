@@ -192,3 +192,61 @@ main {
 .status-emprestado {
   background-color: #dc3545; /* Vermelho */
 }
+
+/* Estilos para a página de detalhes do livro */
+.book-details-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  position: relative;
+}
+
+.book-details-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.book-details-author, .book-details-category {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.book-details-observations {
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.book-details-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Ajustes no Card da página Home */
+.book-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto; /* Empurra o rodapé do card para baixo */
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-details {
+  background-color: #6c757d;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.8rem;
+}

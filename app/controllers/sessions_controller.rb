@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout 'public'
   skip_before_action :set_current_librarian, only: [:new, :create]
   skip_before_action :require_password_change, only: [:new, :create]
   def new

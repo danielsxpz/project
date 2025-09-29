@@ -1,0 +1,21 @@
+<div class="book-details-container">
+  <div class="book-status status-<%= @book.status.parameterize %>">
+    Status: <%= @book.status %>
+  </div>
+  
+  <h1 class="book-details-title"><%= @book.title %></h1>
+  <p class="book-details-author"><strong>Autor:</strong> <%= @book.author %></p>
+  <p class="book-details-category"><strong>Categoria:</strong> <%= @book.category.name %></p>
+  
+  <div class="book-details-observations">
+    <h3>Observações:</h3>
+    <p><%= @book.observations.presence || "Nenhuma observação." %></p>
+  </div>
+
+  <div class="book-details-actions">
+    <%# Botão de empréstimo (funcionalidade futura) %>
+    <button class="btn-primary" disabled>Realizar Empréstimo</button>
+    
+    <%= link_to 'Voltar ao Acervo', root_path, class: 'btn-secondary' %>
+  </div>
+</div>
