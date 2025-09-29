@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
-
-  # A ROTA DE CADASTRO PÚBLICA FOI REMOVIDA
-  # get 'signup', to: 'librarians#new' <--- REMOVA ESTA LINHA
+  get "dashboard/index"
+  root 'dashboard#index'
 
   # Rotas para login e logout (permanecem as mesmas)
   get 'login', to: 'sessions#new'

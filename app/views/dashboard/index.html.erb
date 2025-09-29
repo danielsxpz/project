@@ -1,0 +1,10 @@
+<h1>Bem-vindo à Biblioteca Municipal</h1>
+<p>Você está logado com sucesso.</p>
+
+<%# Adiciona um link para o admin poder cadastrar novos bibliotecários %>
+<% if Current.librarian.admin? %>
+  <p><%= link_to 'Cadastrar Novo Bibliotecário', new_admin_librarian_path %></p>
+<% end %>
+
+<%# Adiciona um link de Logout %>
+<p><%= button_to 'Sair', logout_path, method: :delete %></p>

@@ -1,10 +1,5 @@
 <h1>Login do Bibliotecário</h1>
 
-<%# Mostra uma mensagem de erro geral, se houver %>
-<% if flash[:alert] %>
-  <div class="alert"><%= flash[:alert] %></div>
-<% end %>
-
 <%= form_with url: login_path, method: :post do |form| %>
   <div class="field">
     <%= form.label :email, 'E-mail' %>
@@ -20,5 +15,3 @@
     <%= form.submit 'Entrar' %>
   </div>
 <% end %>
-
-<%= link_to 'Não tenho uma conta', signup_path %>

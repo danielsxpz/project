@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "Acesso não autorizado." unless Current.librarian&.admin?
   end
 
+  def require_login
+    # Se não houver um usuário logado (Current.librarian), redireciona para a página de login
+    redirect_to login_path, alert: "Você precisa estar logado para acessar esta página." unless Current.librarian
+  end
+
 end
