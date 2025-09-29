@@ -35,9 +35,11 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    # Adicionar lógica para verificar se a categoria está em uso antes de deletar (futuro)
-    @category.destroy
-    redirect_to categories_path, notice: 'Categoria deletada com sucesso.'
+    if @category.destroy
+      redirect_to categories_path, notice: 'Categoria deletada com sucesso.'
+    else
+      redirect_to categories_path, alert: @category.errors.full_messages.to_sentence
+    end
   end
 
   private
@@ -49,8 +51,7 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-  
-  # Novo filtro para garantir que apenas bibliotecários padrão acessem
+
   def require_non_admin
     redirect_to admin_librarians_path, alert: "Administradores não gerenciam categorias." if Current.librarian&.admin?
   end

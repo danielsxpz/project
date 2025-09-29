@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if librarian&.authenticate(params[:password])
       session[:librarian_id] = librarian.id
-      
+
       # Define o usuário atual para que possamos verificar se é admin
       Current.librarian = librarian
 

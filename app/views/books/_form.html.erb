@@ -1,0 +1,27 @@
+<%= render 'shared/errors', object: book %>
+
+<%= form_with model: book do |form| %>
+  <div class="field">
+    <%= form.label :title, 'Título' %>
+    <%= form.text_field :title, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author, 'Autor' %>
+    <%= form.text_field :author, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id, 'Categoria' %>
+    <%= form.collection_select :category_id, categories, :id, :name, { prompt: 'Selecione uma categoria' }, { required: true } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observations, 'Observações' %>
+    <%= form.text_area :observations, rows: 4 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Salvar Livro' %>
+  </div>
+<% end %>

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "books/index"
+  get "books/new"
+  get "books/create"
+  get "books/edit"
+  get "books/update"
+  get "books/destroy"
   get "categories/index"
   get "categories/new"
   get "categories/create"
@@ -20,4 +26,5 @@ Rails.application.routes.draw do
   end
 
   resources :categories, except: [:show]
+  resources :books, except: [:show]
 end
