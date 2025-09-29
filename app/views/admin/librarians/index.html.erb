@@ -1,0 +1,33 @@
+<div class="admin-header">
+  <h1>Gerenciar Bibliotecários</h1>
+  <%= link_to 'Cadastrar Novo Bibliotecário', new_admin_librarian_path, class: 'btn-primary' %>
+</div>
+
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Data de Criação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @librarians.each do |librarian| %>
+      <tr>
+        <td><%= librarian.id %></td>
+        <td><%= librarian.name %></td>
+        <td><%= librarian.email %></td>
+        <td><%= l(librarian.created_at, format: :short) %></td>
+        <td>
+          <%= button_to 'Deletar', 
+                        admin_librarian_path(librarian), 
+                        method: :delete, 
+                        data: { confirm: "Você tem certeza que deseja deletar o bibliotecário #{librarian.name}?" },
+                        class: 'btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

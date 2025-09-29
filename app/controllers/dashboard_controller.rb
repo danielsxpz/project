@@ -5,11 +5,4 @@ class DashboardController < ApplicationController
   def index
     # Esta página irá simplesmente renderizar a view 'index.html.erb'
   end
-
-  private
-
-  # Vamos adicionar este novo método de verificação no ApplicationController
-  def require_login
-    redirect_to login_path, alert: "Você precisa estar logado para acessar esta página." unless Current.librarian
-  end
 end

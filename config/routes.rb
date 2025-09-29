@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "dashboard/index"
   root 'dashboard#index'
 
   # Rotas para login e logout (permanecem as mesmas)
@@ -15,6 +14,6 @@ Rails.application.routes.draw do
   namespace :admin do
     # Rota para a página de cadastro de novos bibliotecários pelo admin
     # Ex: /admin/librarians/new
-    resources :librarians, only: [:new, :create]
+    resources :librarians, only: [:index, :new, :create, :destroy]
   end
 end

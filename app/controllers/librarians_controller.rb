@@ -1,5 +1,3 @@
-# app/controllers/librarians_controller.rb
-
 class LibrariansController < ApplicationController
   def new
     # Inicializa um novo objeto Librarian para o formulário de cadastro

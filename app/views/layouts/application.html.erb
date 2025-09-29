@@ -1,5 +1,3 @@
-<%# app/views/layouts/application.html.erb %>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,10 +20,10 @@
         <% if Current.librarian %>
           <%# -- Usuário está LOGADO -- %>
           <span class="user-email">Logado como: <%= Current.librarian.email %></span>
-          
+
           <%# Link para a área de admin, se o usuário for admin %>
           <% if Current.librarian.admin? %>
-            <%= link_to 'Admin', new_admin_librarian_path %>
+            <%= link_to 'Admin', admin_librarians_path %>
           <% end %>
 
           <%= button_to 'Sair', logout_path, method: :delete, class: 'nav-button' %>
