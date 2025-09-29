@@ -250,3 +250,41 @@ main {
   text-decoration: none;
   font-size: 0.8rem;
 }
+
+/* Estilos para a barra de pesquisa */
+.search-bar {
+  margin: 20px 0;
+}
+
+.search-bar form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.search-bar select.category-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}

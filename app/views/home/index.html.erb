@@ -2,6 +2,19 @@
   <h1>Acervo da Biblioteca Municipal</h1>
   <p>Consulte nossos livros e cadastre-se para realizar um empréstimo!</p>
   <%= link_to 'Cadastre-se para Empréstimos', signup_path, class: 'btn-primary' %>
+  <div class="search-bar">
+    <%= form_with(url: root_path, method: :get, local: true) do |form| %>
+      <%# Campo de pesquisa por título %>
+      <%= form.text_field :query, value: params[:query], placeholder: "Digite o título do livro..." %>
+      
+      <%# Dropdown de filtro por categoria %>
+      <%= form.collection_select :category, @categories, :id, :name, 
+                                 { include_blank: 'Todas as Categorias', selected: params[:category] },
+                                 { class: 'category-select' } %>
+
+      <%= form.submit "Pesquisar" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="books-grid">
