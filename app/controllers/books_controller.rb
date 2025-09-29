@@ -8,7 +8,24 @@ class BooksController < ApplicationController
   before_action :load_categories, only: [:new, :create, :edit, :update]
 
   def index
-    @books = Book.includes(:category).all.order(:title)
+    # Carrega as categorias para o dropdown de filtro
+    @categories = Category.all.order(:name)
+    
+    # Começa a busca com todos os livros
+    @books = Book.includes(:category)
+
+    # Filtra pelo título do livro, se o parâmetro 'query' for fornecido
+    if params[:query].present?
+      @books = @books.where("title ILIKE ?", "%#{params[:query]}%")
+    end
+
+    # Filtra pela categoria, se o parâmetro 'category' for fornecido
+    if params[:category].present?
+      @books = @books.where(category_id: params[:category])
+    end
+
+    # Ordena os resultados finais por título
+    @books = @books.order(:title)
   end
 
   def show

@@ -29,4 +29,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, alert: "Você precisa estar logado para acessar esta página." unless Current.librarian
   end
 
+  def require_non_admin
+    # Redireciona o admin para a sua área específica se ele tentar aceder a uma página de bibliotecário padrão
+    if Current.librarian&.admin?
+      redirect_to admin_librarians_path, alert: "Administradores não acedem a esta área."
+    end
+  end
 end

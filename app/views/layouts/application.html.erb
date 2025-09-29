@@ -1,9 +1,7 @@
-<%# app/views/layouts/application.html.erb %>
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Biblioteca Municipal - Acervo</title>
+    <title>Biblioteca Municipal</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,19 +14,22 @@
 
     <header class="main-header">
       <div class="logo">
-        <%= link_to 'Biblioteca Municipal', dashboard_path %>
+        <%# Se o bibliotecário estiver logado, o link leva para o dashboard. Senão, para a página de login. %>
+        <%= link_to 'Biblioteca Municipal', Current.librarian ? dashboard_path : root_path %>
       </div>
       <nav class="main-nav">
-        <%# Este menu agora só aparece para bibliotecários logados %>
-        <span class="user-email">Logado como: <%= Current.librarian.email %></span>
-        
-        <% if Current.librarian.admin? %>
-          <%= link_to 'Bibliotecários', admin_librarians_path %>
-        <% else %>
-          <%= link_to 'Gerenciar Acervo', dashboard_path %>
-        <% end %>
+        <%# ADICIONAMOS A CONDIÇÃO DE VOLTA AQUI %>
+        <% if Current.librarian %>
+          <span class="user-email">Logado como: <%= Current.librarian.email %></span>
+          
+          <% if Current.librarian.admin? %>
+            <%= link_to 'Bibliotecários', admin_librarians_path %>
+          <% else %>
+            <%= link_to 'Gerenciar Acervo', dashboard_path %>
+          <% end %>
 
-        <%= button_to 'Sair', logout_path, method: :delete, class: 'nav-button' %>
+          <%= button_to 'Sair', logout_path, method: :delete, class: 'nav-button' %>
+        <% end %>
       </nav>
     </header>
 

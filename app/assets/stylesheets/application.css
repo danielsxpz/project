@@ -288,3 +288,56 @@ main {
   border-radius: 4px;
   background-color: white;
 }
+
+/* Melhoras na Estilização da Tabela de Livros */
+
+.stylish-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden; /* Garante que os cantos arredondados sejam aplicados */
+}
+
+.stylish-table thead th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.stylish-table tbody tr:hover {
+  background-color: #f1f1f1; /* Efeito de hover para destacar a linha */
+}
+
+.stylish-table td {
+  vertical-align: middle; /* Alinha o conteúdo verticalmente */
+}
+
+/* Estilo para as tags de status (Disponível/Emprestado) */
+.status-tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Estilo para o botão de empréstimo */
+.btn-loan {
+  background-color: #17a2b8; /* Cor azul-petróleo */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-loan:hover {
+  background-color: #138496;
+}
+
+/* Estilo para o botão desativado */
+.btn-loan:disabled {
+  background-color: #adb5bd;
+  cursor: not-allowed;
+}

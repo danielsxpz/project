@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  layout 'public'
   skip_before_action :set_current_librarian, only: [:new, :create]
   skip_before_action :require_password_change, only: [:new, :create]
   def new
@@ -19,7 +18,7 @@ class SessionsController < ApplicationController
       if Current.librarian.admin?
         redirect_to admin_librarians_path, notice: 'Login de administrador realizado com sucesso!'
       else
-        redirect_to dashboard_path, notice: 'Login realizado com sucesso!'
+        redirect_to books_path, notice: 'Login realizado com sucesso!'
       end
     else
       flash.now[:alert] = 'E-mail ou senha inválidos.'

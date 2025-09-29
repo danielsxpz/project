@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :require_login
   # Garante que o usuário NÃO é um admin
   before_action :require_non_admin
-  
+
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index

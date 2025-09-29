@@ -1,19 +1,23 @@
 class UsersController < ApplicationController
-  layout 'public'
+  before_action :require_login
+  before_action :require_non_admin
+
+  def index
+    @users = User.all.order(:full_name)
+  end
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    # Gera uma senha aleatória de 8 caracteres
     @user.loan_password = SecureRandom.hex(4)
 
     if @user.save
-      # Envia o e-mail de boas-vindas com a senha
       UserMailer.welcome_email(@user).deliver_now
 
-      redirect_to root_path, notice: "Cadastro realizado com sucesso! Verifique seu e-mail para a senha de empréstimo."
+      redirect_to books_path, notice: "Usuário cadastrado com sucesso! A senha de empréstimo foi enviada para o e-mail."
     else
       render :new, status: :unprocessable_entity
     end

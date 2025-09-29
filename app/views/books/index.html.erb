@@ -1,16 +1,32 @@
 <div class="admin-header">
-  <h1>Gerenciar Livros</h1>
-  <%= link_to 'Novo Livro', new_book_path, class: 'btn-primary' %>
+  <h1>Acervo de Livros</h1>
+  <div class="dashboard-buttons">
+    <%= link_to 'Novo Livro', new_book_path, class: 'btn-primary' %>
+    <%= link_to 'Gerenciar Categorias', categories_path, class: 'btn-secondary' %>
+    <%= link_to 'Gerenciar Usuários', users_path, class: 'btn-secondary' %>
+  </div>
 </div>
 
-<table class="admin-table">
+<div class="search-bar">
+  <%= form_with(url: books_path, method: :get, local: true) do |form| %>
+    <%= form.text_field :query, value: params[:query], placeholder: "Pesquisar por título..." %>
+    
+    <%= form.collection_select :category, @categories, :id, :name, 
+      { include_blank: 'Todas as Categorias', selected: params[:category] },
+      { class: 'category-select' } %>
+
+    <%= form.submit "Filtrar" %>
+  <% end %>
+</div>
+
+<table class="admin-table stylish-table"> <%# Adicionamos a classe 'stylish-table' %>
   <thead>
     <tr>
       <th>Título</th>
       <th>Autor</th>
       <th>Categoria</th>
       <th>Status</th>
-      <th colspan="2">Ações</th>
+      <th>Ação</th> <%# Nova coluna para o botão de empréstimo %>
     </tr>
   </thead>
   <tbody>
@@ -19,14 +35,17 @@
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.category.name %></td>
-        <td><%= book.status %></td>
-        <td><%= link_to 'Editar', edit_book_path(book) %></td>
         <td>
-          <%= button_to 'Deletar', book, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn-danger' %>
+          <%# Tag de status com cor %>
+          <span class="status-tag status-<%= book.status.parameterize %>">
+            <%= book.status %>
+          </span>
+        </td>
+        <td>
+          <%# Botão de Empréstimo %>
+          <button class="btn-loan" disabled>Emprestar</button>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<br>
-<%= link_to 'Voltar para o Dashboard', root_path, class: 'btn-secondary' %>
