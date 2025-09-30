@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "password_resets/new"
+  get "password_resets/create"
+  get "password_resets/edit"
+  get "password_resets/update"
   get "loans/new"
   get "loans/create"
   # A página de login é a nova raiz da aplicação
@@ -34,4 +38,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :librarians, only: [:index, :new, :create, :destroy]
   end
+
+  resources :password_resets, only: [:new, :create, :edit, :update], param: :token
 end
