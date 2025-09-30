@@ -15,9 +15,16 @@ Rails.application.routes.draw do
 
   # --- Área do Bibliotecário Padrão ---
   get 'dashboard', to: 'books#index'
-  
+
   resources :books do
     resources :loans, only: [:new, :create]
+  end
+
+  resources :loans, only: [] do
+    member do
+      get :details # Rota para obter os detalhes do empréstimo (para o pop-up)
+      patch :return_book # Rota para marcar o livro como devolvido
+    end
   end
 
   resources :categories, except: [:show]

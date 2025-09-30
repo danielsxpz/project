@@ -5,4 +5,8 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :title, presence: true
   validates :status, presence: true
+
+  def active_loan
+    loans.find_by(returned_at: nil)
+  end
 end

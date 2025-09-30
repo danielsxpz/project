@@ -19,36 +19,63 @@
   <% end %>
 </div>
 
-<table class="admin-table stylish-table"> <%# Adicionamos a classe 'stylish-table' %>
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Autor</th>
-      <th>Categoria</th>
-      <th>Status</th>
-      <th>Ação</th> <%# Nova coluna para o botão de empréstimo %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @books.each do |book| %>
+<div data-controller="loan-modal">
+
+  <table class="admin-table stylish-table">
+    <thead>
       <tr>
-        <td><%= book.title %></td>
-        <td><%= book.author %></td>
-        <td><%= book.category.name %></td>
-        <td>
-          <%# Tag de status com cor %>
-          <span class="status-tag status-<%= book.status.parameterize %>">
-            <%= book.status %>
-          </span>
-        </td>
-        <td>
-          <% if book.status == 'Disponível' %>
-            <%= link_to 'Emprestar', new_book_loan_path(book), class: 'btn-loan' %>
-          <% else %>
-            <button class="btn-loan" disabled>Emprestar</button>
-          <% end %>
-        </td>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Categoria</th>
+        <th>Status</th>
+        <th>Ação</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td><%= book.category.name %></td>
+          <td>
+            <span class="status-tag status-<%= book.status.parameterize %>">
+              <%= book.status %>
+            </span>
+          </td>
+          <td>
+            <% if book.status == 'Disponível' %>
+              <%= link_to 'Emprestar', new_book_loan_path(book), class: 'btn-loan' %>
+            <% else %>
+              <button data-action="click->loan-modal#open" 
+                      data-loan-id="<%= book.active_loan&.id %>"
+                      data-book-title="<%= book.title %>"
+                      class="btn-info">
+                Ver Mais
+              </button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%# O modal agora está DENTRO do controller, mas sem a declaração 'data-controller' nele mesmo %>
+  <div data-loan-modal-target="modal" class="modal-backdrop hidden">
+    <div class="modal-content">
+      <button data-action="click->loan-modal#close" class="modal-close-button">&times;</button>
+      <h2>Detalhes do Empréstimo</h2>
+      
+      <div data-loan-modal-target="details">
+        <p><strong>Livro:</strong> <span data-loan-modal-target="bookTitle"></span></p>
+        <p><strong>Emprestado para:</strong> <span data-loan-modal-target="userName"></span></p>
+        <p><strong>Data do Empréstimo:</strong> <span data-loan-modal-target="loanDate"></span></p>
+        <p><strong>Data de Devolução:</strong> <span data-loan-modal-target="dueDate"></span></p>
+      </div>
+
+      <div class="modal-actions">
+        <button data-action="click->loan-modal#returnBook" class="btn-success">Marcar como Devolvido</button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -2,6 +2,7 @@ class LoansController < ApplicationController
   before_action :require_login
   before_action :require_non_admin
   before_action :set_book
+  before_action :set_loan, only: [:details, :return_book]
 
   def new
     if @book.status != 'Disponível'
@@ -34,7 +35,28 @@ class LoansController < ApplicationController
     end
   end
 
+  def details
+    render json: {
+      user_name: @loan.user.full_name,
+      loan_date: I18n.l(@loan.loan_date, format: :default),
+      due_date: I18n.l(@loan.due_date, format: :default)
+    }
+  end
+
+  def return_book
+    ActiveRecord::Base.transaction do
+      @loan.update!(returned_at: Time.current)
+      @loan.book.update!(status: 'Disponível')
+    end
+    redirect_to books_path, notice: "Livro '#{@loan.book.title}' devolvido com sucesso!"
+  end
+
   private
+
+  def set_loan
+    # Encontra o empréstimo pelo seu ID
+    @loan = Loan.find(params[:id])
+  end
 
   def set_book
     @book = Book.find(params[:book_id])
