@@ -1,0 +1,29 @@
+<h1>Realizar Empréstimo</h1>
+
+<div class="book-loan-details">
+  <h2>Livro: <%= @book.title %></h2>
+  <p><strong>Autor:</strong> <%= @book.author %></p>
+</div>
+
+<%= form_with(url: book_loans_path(@book), method: :post, local: true) do |form| %>
+  <p>
+    Caso o usuário não exista no sistema,
+    <%= link_to 'realize o cadastro aqui', new_user_path %> antes de prosseguir.
+  </p>
+  
+  <div class="field">
+    <%= label_tag :cpf, 'CPF do Usuário' %>
+    <%= text_field_tag :cpf, nil, required: true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :loan_password, 'Senha de Empréstimo do Usuário' %>
+    <%= password_field_tag :loan_password, nil, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Confirmar Empréstimo' %>
+  </div>
+<% end %>
+<br>
+<%= link_to 'Cancelar', books_path, class: 'btn-secondary' %>

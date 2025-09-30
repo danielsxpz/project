@@ -42,8 +42,11 @@
           </span>
         </td>
         <td>
-          <%# Botão de Empréstimo %>
-          <button class="btn-loan" disabled>Emprestar</button>
+          <% if book.status == 'Disponível' %>
+            <%= link_to 'Emprestar', new_book_loan_path(book), class: 'btn-loan' %>
+          <% else %>
+            <button class="btn-loan" disabled>Emprestar</button>
+          <% end %>
         </td>
       </tr>
     <% end %>

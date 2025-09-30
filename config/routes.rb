@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "loans/new"
+  get "loans/create"
   # A página de login é a nova raiz da aplicação
   root 'sessions#new'
 
@@ -12,8 +14,12 @@ Rails.application.routes.draw do
   patch 'edit_password', to: 'password_changes#update'
 
   # --- Área do Bibliotecário Padrão ---
-  get 'dashboard', to: 'books#index' # O dashboard agora é a lista de livros
-  resources :books, except: [:show]
+  get 'dashboard', to: 'books#index'
+  
+  resources :books do
+    resources :loans, only: [:new, :create]
+  end
+
   resources :categories, except: [:show]
   resources :users, only: [:index, :new, :create]
 

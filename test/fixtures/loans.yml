@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loan_date: 2025-09-29
+  due_date: 2025-09-29
+  user: one
+  book: one
+
+two:
+  loan_date: 2025-09-29
+  due_date: 2025-09-29
+  user: two
+  book: two
