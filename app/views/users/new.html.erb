@@ -1,4 +1,5 @@
 <h1>Cadastro de Usuário da Biblioteca</h1>
+
 <%= render 'shared/errors', object: @user %>
 
 <%= form_with model: @user do |form| %>
@@ -22,3 +23,6 @@
     <%= form.submit 'Cadastrar' %>
   </div>
 <% end %>
+
+<br>
+<%= link_to 'Voltar', users_path, class: 'btn-secondary' %>

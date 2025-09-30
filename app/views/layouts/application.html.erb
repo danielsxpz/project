@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Biblioteca Municipal</title>
+    <title>Biblioteca Municipal Ney Pontes </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-
     <header class="main-header">
       <div class="logo">
-        <%# Se o bibliotecário estiver logado, o link leva para o dashboard. Senão, para a página de login. %>
-        <%= link_to 'Biblioteca Municipal', Current.librarian ? dashboard_path : root_path %>
+        <%= link_to 'Biblioteca Municipal Ney Pontes', Current.librarian ? dashboard_path : root_path %>
       </div>
       <nav class="main-nav">
-        <%# ADICIONAMOS A CONDIÇÃO DE VOLTA AQUI %>
         <% if Current.librarian %>
           <span class="user-email">Logado como: <%= Current.librarian.email %></span>
-          
           <% if Current.librarian.admin? %>
             <%= link_to 'Bibliotecários', admin_librarians_path %>
           <% else %>
             <%= link_to 'Gerenciar Acervo', books_path %>
           <% end %>
-
           <%= button_to 'Sair', logout_path, method: :delete, class: 'nav-button' %>
         <% end %>
       </nav>
     </header>
 
-    <main>
-      <%# Exibe as mensagens de notice e alert %>
-      <% if notice %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert"><%= alert %></p>
-      <% end %>
-    
-      <%= yield %>
-    </main>
+    <div class="container">
+      <main>
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+        <%= yield %>
+      </main>
+    </div>
 
   </body>
 </html>

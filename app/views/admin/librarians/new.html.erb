@@ -2,7 +2,7 @@
 
 <%= render 'shared/errors', object: @librarian %>
 
-<%= form_with model: @librarian, url: admin_librarians_path do |form| %>
+<%= form_with model: [:admin, @librarian] do |form| %>
   <div class="field">
     <%= form.label :name, 'Nome' %>
     <%= form.text_field :name, required: true %>
@@ -27,3 +27,7 @@
     <%= form.submit 'Cadastrar Bibliotecário' %>
   </div>
 <% end %>
+
+<br>
+
+<%= link_to 'Voltar', admin_librarians_path, class: 'btn-secondary' %>

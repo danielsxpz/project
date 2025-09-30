@@ -1,348 +1,232 @@
+/* app/assets/stylesheets/application.css */
+
+/* --- RESET BÁSICO E VARIÁVEIS DE COR --- */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --light-gray: #f8f9fa;
+  --dark-gray: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --background-color: #f4f4f4;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   margin: 0;
-  background-color: #f4f4f4;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; }
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
 }
 
 .main-header {
-  background-color: #333;
+  background-color: var(--dark-gray);
   color: white;
-  padding: 10px 20px;
+  padding: 10px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.main-header a {
+.main-header .logo a {
   color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.main-header .logo a:hover {
   text-decoration: none;
-  padding: 5px 10px;
 }
 
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
-
-.nav-button {
-  background-color: #555;
-  border: none;
+.main-nav a {
+  color: #ccc;
+}
+.main-nav a:hover {
   color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+  text-decoration: none;
 }
 
-.nav-button:hover {
-  background-color: #777;
+/* --- COMPONENTES GERAIS (BOTÕES, AVISOS) --- */
+.notice, .alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
-
-main {
-  padding: 20px;
-}
-
 .notice {
-  color: green;
-  border: 1px solid green;
-  padding: 10px;
-  margin-bottom: 15px;
-  background-color: #e8f5e9;
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
 }
-
 .alert {
-  color: red;
-  border: 1px solid red;
-  padding: 10px;
-  margin-bottom: 15px;
-  background-color: #ffebee;
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
 }
 
-/* Estilos para a página de admin */
+/* Estilos de Botões */
+.btn-primary, .btn-secondary, .btn-danger, .btn-loan, .btn-info, .nav-button, input[type="submit"] {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-primary, input[type="submit"] {
+  color: #fff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.btn-primary:hover, input[type="submit"]:hover {
+  background-color: #0056b3;
+  border-color: #004a99;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-secondary { color: #fff; background-color: var(--secondary-color); border-color: var(--secondary-color); }
+.btn-secondary:hover { background-color: #5a6268; border-color: #545b62; text-decoration: none; color: white; }
+
+.btn-danger { color: #fff; background-color: var(--danger-color); border-color: var(--danger-color); }
+.btn-danger:hover { background-color: #c82333; border-color: #bd2130; text-decoration: none; color: white; }
+
+.btn-loan { color: #fff; background-color: #17a2b8; border-color: #17a2b8; }
+.btn-loan:hover { background-color: #138496; border-color: #117a8b; text-decoration: none; color: white; }
+.btn-loan:disabled { background-color: #adb5bd; cursor: not-allowed; }
+
+.btn-info { color: #212529; background-color: var(--warning-color); border-color: var(--warning-color); }
+.btn-info:hover { background-color: #e0a800; border-color: #d39e00; text-decoration: none; color: #212529; }
+
+/* --- FORMULÁRIOS --- */
+.field {
+  margin-bottom: 1rem;
+}
+.field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+.field textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+/* --- TABELAS --- */
 .admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .admin-table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.admin-table th, .admin-table td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .admin-table thead th {
-  background-color: #f2f2f2;
+  background-color: var(--light-gray);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color);
 }
 
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+.admin-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+.admin-table tbody tr:last-child {
+  border-bottom: none;
 }
 
-.btn-danger:hover {
-  background-color: #c82333;
+.admin-table tbody tr:hover {
+  background-color: #f1f1f1;
 }
 
-.dashboard-buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
+.admin-table td {
+  padding: 12px;
+  vertical-align: middle;
 }
 
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-/*----------------*/
-
-/* Estilos para a Grelha de Livros na Página Principal */
-
-.public-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.books-grid {
-  display: grid;
-  /* Cria colunas responsivas: elas terão no mínimo 280px e se ajustarão para preencher o espaço */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px; /* Espaçamento entre os cards */
-  padding: 10px;
-}
-
-.book-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease-in-out;
-  position: relative; /* Necessário para o posicionamento do status */
-  overflow: hidden; /* Garante que o status não saia para fora do card */
-}
-
-.book-card:hover {
-  transform: translateY(-5px); /* Efeito de elevação ao passar o rato */
-}
-
-.book-title {
-  font-size: 1.25rem;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.book-author {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 15px;
-  font-style: italic;
-}
-
-.book-category {
-  font-size: 0.9rem;
-  color: #777;
-  margin-top: auto; /* Empurra a categoria para o fundo do card */
-}
-
-/* Estilos para o Status do Livro */
-.book-status {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px 15px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: white;
-  border-bottom-left-radius: 8px;
-}
-
-.status-disponivel {
-  background-color: #28a745; /* Verde */
-}
-
-.status-emprestado {
-  background-color: #dc3545; /* Vermelho */
-}
-
-/* Estilos para a página de detalhes do livro */
-.book-details-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 30px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  position: relative;
-}
-
-.book-details-title {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.book-details-author, .book-details-category {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 15px;
-}
-
-.book-details-observations {
-  margin-top: 30px;
-  border-top: 1px solid #eee;
-  padding-top: 20px;
-}
-
-.book-details-actions {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-}
-
-/* Ajustes no Card da página Home */
-.book-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.card-footer {
-  margin-top: auto; /* Empurra o rodapé do card para baixo */
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.btn-details {
-  background-color: #6c757d;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
-/* Estilos para a barra de pesquisa */
+/* --- PESQUISA --- */
 .search-bar {
   margin: 20px 0;
+  padding: 20px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
 }
-
 .search-bar form {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 15px;
+  align-items: center;
 }
-
-.search-bar input[type="text"] {
-  padding: 10px;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.search-bar input, .search-bar select {
+  width: auto;
+  flex-grow: 1;
 }
-
 .search-bar input[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
+  flex-grow: 0;
 }
 
-.search-bar input[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.search-bar select.category-select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-}
-
-/* Melhoras na Estilização da Tabela de Livros */
-
-.stylish-table {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden; /* Garante que os cantos arredondados sejam aplicados */
-}
-
-.stylish-table thead th {
-  background-color: #f8f9fa;
-  color: #333;
-  font-weight: 600;
-  border-bottom: 2px solid #dee2e6;
-}
-
-.stylish-table tbody tr:hover {
-  background-color: #f1f1f1; /* Efeito de hover para destacar a linha */
-}
-
-.stylish-table td {
-  vertical-align: middle; /* Alinha o conteúdo verticalmente */
-}
-
-/* Estilo para as tags de status (Disponível/Emprestado) */
-.status-tag {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: white;
-}
-
-/* Estilo para o botão de empréstimo */
-.btn-loan {
-  background-color: #17a2b8; /* Cor azul-petróleo */
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-loan:hover {
-  background-color: #138496;
-}
-
-/* Estilo para o botão desativado */
-.btn-loan:disabled {
-  background-color: #adb5bd;
-  cursor: not-allowed;
-}
-
-/* Estilos para o Modal (Pop-up) */
+/* --- MODAL (POP-UP) --- */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -355,7 +239,6 @@ main {
   align-items: center;
   z-index: 1000;
 }
-
 .modal-content {
   background-color: white;
   padding: 30px;
@@ -365,35 +248,35 @@ main {
   max-width: 500px;
   position: relative;
 }
-
 .modal-close-button {
   position: absolute;
   top: 10px;
   right: 15px;
   font-size: 1.5rem;
-  font-weight: bold;
   border: none;
   background: none;
   cursor: pointer;
 }
-
 .modal-actions {
   margin-top: 20px;
   text-align: right;
 }
-
-.btn-info {
-  background-color: #ffc107;
-  color: #212529;
-  border-color: #ffc107;
-}
-
-.btn-success {
-  background-color: #28a745;
-  color: white;
-}
-
-/* Classe para esconder elementos */
 .hidden {
   display: none;
+}
+
+/* --- TAGS DE STATUS --- */
+.status-tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+.status-disponivel {
+  background-color: var(--success-color);
+}
+.status-emprestado {
+  background-color: var(--danger-color);
 }

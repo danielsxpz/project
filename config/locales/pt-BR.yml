@@ -1,12 +1,125 @@
 pt-BR:
+  # Tradução para os modelos da sua aplicação
+  activerecord:
+    models:
+      book: "Livro"
+      category: "Categoria"
+      librarian: "Bibliotecário"
+      loan: "Empréstimo"
+      user: "Usuário da Biblioteca"
+    attributes:
+      book:
+        id: "ID"
+        title: "Título"
+        author: "Autor"
+        category: "Categoria"
+        status: "Status"
+        observations: "Observações"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      category:
+        id: "ID"
+        name: "Nome"
+        created_at: "Criada em"
+        updated_at: "Atualizada em"
+      librarian:
+        id: "ID"
+        name: "Nome"
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação da senha"
+        admin: "Administrador"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      loan:
+        id: "ID"
+        user: "Usuário"
+        book: "Livro"
+        loan_date: "Data do Empréstimo"
+        due_date: "Data de Devolução"
+        returned_at: "Data da Devolução Efetiva"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      user:
+        id: "ID"
+        full_name: "Nome Completo"
+        cpf: "CPF"
+        phone: "Telefone"
+        email: "E-mail"
+        loan_password: "Senha de Empréstimo"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+
+  # Mensagens de erro de validação do Active Record
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: "deve ser aceito"
+      blank: "não pode ficar em branco"
+      confirmation: "não confere com a confirmação"
+      empty: "não pode ficar vazio"
+      equal_to: "deve ser igual a %{count}"
+      even: "deve ser par"
+      exclusion: "não está disponível"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      inclusion: "não está incluído na lista"
+      invalid: "não é válido"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      not_a_number: "não é um número"
+      not_an_integer: "não é um número inteiro"
+      odd: "deve ser ímpar"
+      present: "deve ficar em branco"
+      record_invalid: "A validação falhou: %{errors}"
+      taken: "já está em uso"
+      too_long: "é muito longo (máximo: %{count} caracteres)"
+      too_short: "é muito curto (mínimo: %{count} caracteres)"
+      wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+      restrict_dependent_destroy:
+        has_many: "Não é possível excluir o registro pois existem %{record} dependentes"
+        has_one: "Não é possível excluir o registro pois existe um %{record} dependente"
+
+  # Formatos de data e hora
   date:
     formats:
       default: "%d/%m/%Y"
       short: "%d de %b"
       long: "%d de %B de %Y"
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
 
   time:
     formats:
-      default: "%a, %d de %B de %Y, %H:%M"
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
       short: "%d/%m, %H:%M"
       long: "%d de %B de %Y, %H:%M"
+    am: "am"
+    pm: "pm"
+
+  # Números
+  number:
+    format:
+      separator: ","
+      delimiter: "."
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        unit: "R$"
+        format: "%u %n"
+        separator: ","
+        delimiter: "."
+        precision: 2
+
+  # Helpers para botões e formulários
+  helpers:
+    submit:
+      create: "Criar %{model}"
+      submit: "Salvar %{model}"
+      update: "Atualizar %{model}"
+    select:
+      prompt: "Selecione"
