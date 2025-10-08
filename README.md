@@ -1,6 +1,8 @@
 # README
 
+UTILIZE O COMANDO RAILS DB:SEED PARA CRIAR O ADMIN
+
 ACESSO DO ADMIN
 
-Email: daniel@gmail.com
-Senha: 1234567
+Email: admin@gmail.com
+Senha: password
